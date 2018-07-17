@@ -1,1 +1,22 @@
+@import "../../Shared";
 @import "../Body";
+
+.container-splash{
+  #hero{
+    height: 70vh;
+    color: $white;
+    background-image: url("../../../Assets/learning.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    h1{
+      opacity: .6;
+      font-size: 4.5em;
+      #hs-span{
+        color: $light-green;
+      }
+      #lv-span{
+        color: $light-purple
+      }
+    }
+  }
+}

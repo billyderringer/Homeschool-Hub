@@ -61,6 +61,15 @@ a:active, a:focus {
     background-color: #fff;
     color: #2bbbad; }
 
+.green-link {
+  background-color: inherit;
+  color: #2bbbad;
+  padding: 3px 5px; }
+  .green-link:hover {
+    background-color: #2bbbad;
+    color: inherit;
+    cursor: pointer; }
+
 #container-footer {
   height: 5vh; }
 

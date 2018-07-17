@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import Modal from 'react-modal'
-import './Login.css'
-
-import './Login.css'
 
 class Login extends Component{
     constructor(props) {
@@ -87,7 +84,7 @@ class Login extends Component{
                                display: 'flex',
                                justifyContent: 'center',
                                alignItems: 'center',
-                               backgroundColor: 'rgba(0,0,0,.5)',
+                               backgroundColor: 'rgba(0,0,0,.75)',
                                color: 'rgba(255,255,255,.8)'
                            },
                            content: {
@@ -98,62 +95,49 @@ class Login extends Component{
                                padding: '40px 20px',
                                borderRadius: '0',
                                border: 'none',
-                               backgroundColor: 'rgba(0,0,0,.5)',
+                               backgroundColor: 'rgba(0,0,0,.8)',
                                color: 'rgba(255,255,255,.8)'
                            }
-                       }}
-                >
+                       }}>
                     <div id="modal-login"
                          className="modal-container"
-                         style={{
-                            textAlign: 'center'
-                        }}
-                    >
-                        <h2 style={{
-                                marginBottom: '20px'
-                            }}
-                        >
+                         style={{textAlign: 'center'}}>
+                        <h2 style={{marginBottom: '20px'}}>
                             LOGIN
                         </h2>
-                        <img src={require("../../../../Assets/hsh-logo/hsh-logo-grn-60x60.png")}
+                        <img src={require("../../../Assets/hsh-logo/hsh-logo-grn-60x60.png")}
                              alt="homeschool hub logo" />
-                        <p style={{
-                                margin: '20px 0 40px'
-                            }}
-                        >Welcome to Homeschool Hub!</p>
+                        <p style={{margin: '20px 0 40px'}}
+                        >Welcome to Homeschool Hub!
+                        </p>
                         <form className="flex-form"
                               id="login-form"
                               onSubmit={this.handleSubmit}>
-                            <div>
-                                <input id="username-login"
-                                       name="username"
-                                       onChange={this.handleChange}
-                                       type="email"
-                                       placeholder="Email"
-                                       style={{
-                                           padding: '5px',
-                                           color: '#fff',
-                                           backgroundColor: 'rgba(255,255,255,.1)'
-                                       }}
-                                />
-                            </div>
-                            <div>
-                                <input id="password-login"
-                                       name="password"
-                                       onChange={this.handleChange}
-                                       type="password"
-                                       placeholder="Password"
-                                       style={{
-                                           margin: '10px 0',
-                                           padding: '5px',
-                                           color: '#fff',
-                                           backgroundColor: 'rgba(255,255,255,.1)'
-                                       }}
-                                />
-                            </div>
-                            <div>
+                            <input id="username-login"
+                                   name="username"
+                                   onChange={this.handleChange}
+                                   type="email"
+                                   placeholder="Email"
+                                   style={{
+                                       padding: '5px',
+                                       color: '#fff',
+                                       backgroundColor: 'rgba(255,255,255,.1)'
+                                   }}/>
+                            <input id="password-login"
+                                   name="password"
+                                   onChange={this.handleChange}
+                                   type="password"
+                                   placeholder="Password"
+                                   style={{
+                                       margin: '10px 0',
+                                       padding: '5px',
+                                       color: '#fff',
+                                       backgroundColor: 'rgba(255,255,255,.1)'
+                                   }}/>
+                            <div style={{textAlign: 'left'}}>
                                 <button type="submit"
                                         className="green-button"
+                                        style={{marginLeft: '0'}}
                                 >Login
                                 </button>
                                 <button type="button"
@@ -161,14 +145,26 @@ class Login extends Component{
                                         className="green-button"
                                 >Cancel
                                 </button>
-                                <button type="button"
-                                        onClick={this.switchModal}
-                                        className="green-button"
-                                >Sign Up
-                                </button>
                             </div>
                         </form>
-
+                        <div>
+                            <p style={{
+                                fontSize: '.7em',
+                                display: 'inline-block',
+                                marginTop: '20px'
+                            }}
+                            >New to Homeschool Hub?
+                            </p>
+                            <a onClick={this.switchModal}
+                               className="green-link"
+                               style={{
+                                   fontSize: '.7em',
+                                   display: 'inline-block',
+                                   marginLeft: '5px'
+                               }}
+                            >Sign Up
+                            </a>
+                        </div>
                     </div>
                 </Modal>
             </div>

@@ -61,7 +61,16 @@ a:active, a:focus {
     background-color: #fff;
     color: #2bbbad; }
 
-.container-body {
+.green-link {
+  background-color: inherit;
+  color: #2bbbad;
+  padding: 3px 5px; }
+  .green-link:hover {
+    background-color: #2bbbad;
+    color: inherit;
+    cursor: pointer; }
+
+#container-dashboard {
   height: 90vh; }
 
 /*# sourceMappingURL=Dashboard.css.map */

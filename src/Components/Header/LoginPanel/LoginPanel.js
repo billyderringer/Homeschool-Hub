@@ -18,7 +18,7 @@ class LoginPanel extends Component{
         this.renderCheck = this.renderCheck.bind(this)
     }
 
-    //modals
+    //modal controls
     openLogin() {
         this.setState({openLogin: true});
     }

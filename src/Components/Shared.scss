@@ -102,3 +102,18 @@ a:active, a:focus {
 .green-button{
   @include hover-button($light-green, $white)
 }
+
+@mixin hover-link($bgColor, $textColor){
+  background-color: $bgColor;
+  color: $textColor;
+  padding: 3px 5px;
+  &:hover{
+    background-color: $textColor;
+    color: $bgColor;
+    cursor: pointer;
+  }
+}
+
+.green-link{
+  @include hover-link(inherit, $light-green)
+}
