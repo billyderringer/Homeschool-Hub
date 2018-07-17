@@ -1,0 +1,101 @@
+
+//colors
+$white:         #fff;
+$off-white:     #d1d1d1;
+$black:         #232323;
+$off-black:     #3b3b3b;
+$opaqueBlack:   rgba(0,0,0,.5);
+$dark-grey:     #454545;
+$light-grey:    #878787;
+$light-green:   #2bbbad;
+$light-greenish: #7BADAF;
+$mid-blue:      #405364;
+$light-blue:    #488DD8;
+$dark-purple:   #4F2A80;
+$light-purple:  #9854FF;
+$dark-orange:   #D24E02;
+$mid-orange:    #EC5600;
+$light-orange:  #EA783A;
+
+//resets
+*, .container-fluid, .col, .row, nav, img, ul, li, h1, h2, h3, h4, h5, h6{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+a, p{
+  color: inherit;
+}
+
+a:hover, a:active, a:focus{
+  color: inherit;
+  text-decoration: none;
+}
+
+button{
+  border: none;
+  padding: 0 5px;
+  margin: 0 5px;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+input{
+  &:enabled{
+    border: none;
+    outline: none;
+  }
+}
+
+a:active, a:hover {
+  outline: 0;
+  text-decoration: none;
+}
+
+a:active, a:focus {
+  outline: 0;
+  border: none;
+}
+
+.clearfix:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+}
+
+//etc
+.center-all-flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-form{
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin hover-button($bgColor, $textColor){
+  background-color: $bgColor;
+  color: $textColor;
+  padding: 3px 5px;
+  &:hover{
+    background-color: $textColor;
+    color: $bgColor;
+  }
+}
+
+.green-button{
+  @include hover-button($light-green, $white)
+}

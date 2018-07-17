@@ -1,0 +1,29 @@
+@import "../Shared";
+
+#container-header{
+  height: 5vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  background-color: $light-green;
+  color: $white;
+
+  #header-brand{
+    margin-left: 20px;
+
+    h2{
+      font-size: .95em;
+      display: inline-block;
+    }
+    img{
+      height: 3vh;
+      margin-right: 5px;
+    }
+  }
+
+  .menu-panel{
+    margin-right: 20px;
+  }
+}
