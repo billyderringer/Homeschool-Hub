@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Modal from 'react-modal'
+import './Login.css'
 
 import './Login.css'
 
@@ -16,10 +17,7 @@ class Login extends Component{
         this.loginTeacher = this.loginTeacher.bind(this)
         this.setTeacherId = this.setTeacherId.bind(this)
         this.logoutTeacher = this.logoutTeacher.bind(this)
-    }
-
-    componentWillMount(){
-
+        this.switchModal = this.switchModal.bind(this)
     }
 
     handleChange(event) {
@@ -36,8 +34,14 @@ class Login extends Component{
         })
     }
 
+    switchModal(){
+        this.props.closeLogin()
+        this.props.openRegister()
+    }
+
+    //api calls
     loginTeacher(){
-        axios.post('http://localhost:3005/api/v1/teacher/login', {
+        axios.post('http://localhost:3008/api/v1/teacher/login', {
             "email": this.state.username,
             "password": this.state.password
         })
@@ -74,28 +78,99 @@ class Login extends Component{
         return(
             <div id="container-login"
                  className="center-all-flex">
+                <Modal isOpen={this.props.loginState}
+                       onRequestClose={this.closeLogin}
+                       ariaHideApp={false}
+                       contentLabel="Sign In Modal"
+                       style={{
+                           overlay: {
+                               display: 'flex',
+                               justifyContent: 'center',
+                               alignItems: 'center',
+                               backgroundColor: 'rgba(0,0,0,.5)',
+                               color: 'rgba(255,255,255,.8)'
+                           },
+                           content: {
+                               top: 'auto',
+                               bottom: 'auto',
+                               left: 'auto',
+                               right: 'auto',
+                               padding: '40px 20px',
+                               borderRadius: '0',
+                               border: 'none',
+                               backgroundColor: 'rgba(0,0,0,.5)',
+                               color: 'rgba(255,255,255,.8)'
+                           }
+                       }}
+                >
+                    <div id="modal-login"
+                         className="modal-container"
+                         style={{
+                            textAlign: 'center'
+                        }}
+                    >
+                        <h2 style={{
+                                marginBottom: '20px'
+                            }}
+                        >
+                            LOGIN
+                        </h2>
+                        <img src={require("../../../../Assets/hsh-logo/hsh-logo-grn-60x60.png")}
+                             alt="homeschool hub logo" />
+                        <p style={{
+                                margin: '20px 0 40px'
+                            }}
+                        >Welcome to Homeschool Hub!</p>
+                        <form className="flex-form"
+                              id="login-form"
+                              onSubmit={this.handleSubmit}>
+                            <div>
+                                <input id="username-login"
+                                       name="username"
+                                       onChange={this.handleChange}
+                                       type="email"
+                                       placeholder="Email"
+                                       style={{
+                                           padding: '5px',
+                                           color: '#fff',
+                                           backgroundColor: 'rgba(255,255,255,.1)'
+                                       }}
+                                />
+                            </div>
+                            <div>
+                                <input id="password-login"
+                                       name="password"
+                                       onChange={this.handleChange}
+                                       type="password"
+                                       placeholder="Password"
+                                       style={{
+                                           margin: '10px 0',
+                                           padding: '5px',
+                                           color: '#fff',
+                                           backgroundColor: 'rgba(255,255,255,.1)'
+                                       }}
+                                />
+                            </div>
+                            <div>
+                                <button type="submit"
+                                        className="green-button"
+                                >Login
+                                </button>
+                                <button type="button"
+                                        onClick={this.props.closeLogin}
+                                        className="green-button"
+                                >Cancel
+                                </button>
+                                <button type="button"
+                                        onClick={this.switchModal}
+                                        className="green-button"
+                                >Sign Up
+                                </button>
+                            </div>
+                        </form>
 
-                <h1>Login</h1>
-                <form className="flex-form"
-                      id="login-form"
-                      onSubmit={this.handleSubmit}>
-                    <label htmlFor="username">Username: </label>
-                    <input id="username"
-                           name="username"
-                           onChange={this.handleChange}
-                           type="email"/>
-                    <label htmlFor="password">Password: </label>
-                    <input id="password"
-                           name="password"
-                           onChange={this.handleChange}
-                           type="password"/>
-                    <input type="submit"
-                           value="Login"/>
-                    <Link to="/register"
-                          className="green-button center-all-flex"
-                    >Sign Up
-                    </Link>
-                </form>
+                    </div>
+                </Modal>
             </div>
         )
     }

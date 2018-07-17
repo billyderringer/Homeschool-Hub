@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Modal from 'react-modal'
+import './Register.css'
 
 import './Register.css'
 
@@ -19,10 +20,7 @@ class Register extends Component{
         this.handleSubmit = this.handleSubmit.bind(this)
         this.registerTeacher = this.registerTeacher.bind(this)
         this.loginTeacher = this.loginTeacher.bind(this)
-    }
-
-    componentWillMount(){
-
+        this.switchModal = this.switchModal.bind(this)
     }
 
     handleChange(event) {
@@ -38,6 +36,11 @@ class Register extends Component{
         this.setState({
             value: ''
         })
+    }
+
+    switchModal(){
+        this.props.closeRegister()
+        this.props.openLogin()
     }
 
     registerTeacher(){
@@ -89,6 +92,11 @@ class Register extends Component{
         return(
             <div id="container-register"
                  className="center-all-flex">
+                <Modal className="modal-register"
+                       isOpen={this.props.registerState}
+                       onRequestClose={this.closeLogin}
+                       ariaHideApp={false}
+                       contentLabel="Register Modal">
                 <h1>Register</h1>
                 <form className="flex-form"
                       id="login-form"
@@ -116,11 +124,17 @@ class Register extends Component{
                     <input type="submit"
                            value="Register"
                            className="green-button"/>
-                    <Link to="/login"
-                          className="green-button center-all-flex"
+                    <button onClick={this.switchModal}
+                            className="green-button center-all-flex"
                     >Login
-                    </Link>
+                    </button>
+
                 </form>
+                    <button onClick={this.props.closeRegister}
+                            className="green-button center-all-flex"
+                    >Cancel
+                    </button>
+                </Modal>
             </div>
         )
     }

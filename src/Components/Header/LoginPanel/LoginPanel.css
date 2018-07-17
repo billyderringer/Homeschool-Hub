@@ -21,6 +21,8 @@ button {
   margin: 0 5px; }
   button:hover {
     cursor: pointer; }
+  button:focus {
+    outline: none; }
 
 input:enabled {
   border: none;
@@ -61,5 +63,8 @@ a:active, a:focus {
 
 #login-panel {
   margin-right: 20px; }
+
+.modal-container {
+  flex-direction: column; }
 
 /*# sourceMappingURL=LoginPanel.css.map */
