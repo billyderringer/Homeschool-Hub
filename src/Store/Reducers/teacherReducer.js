@@ -4,7 +4,9 @@ const initialState = {
     userName: '',
     password: '',
     teacherId: '',
-    isLoggedIn: false
+    isLoggedIn: false,
+    openLogin: false,
+    openRegister: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -22,6 +24,26 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 teacherId: action.teacherId
+            }
+        case 'OPEN_REGISTER':
+            return {
+                ...state,
+                openRegister: true
+            }
+        case 'CLOSE_REGISTER':
+            return {
+                ...state,
+                openRegister: false
+            }
+        case 'OPEN_LOGIN':
+            return {
+                ...state,
+                openLogin: true
+            }
+        case 'CLOSE_LOGIN':
+            return {
+                ...state,
+                openLogin: false
             }
         default:
             return state

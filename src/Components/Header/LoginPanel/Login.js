@@ -118,6 +118,7 @@ class Login extends Component{
                                    onChange={this.handleChange}
                                    type="email"
                                    placeholder="Email"
+                                   required
                                    style={{
                                        padding: '5px',
                                        color: '#fff',
@@ -128,6 +129,7 @@ class Login extends Component{
                                    onChange={this.handleChange}
                                    type="password"
                                    placeholder="Password"
+                                   required
                                    style={{
                                        margin: '10px 0',
                                        padding: '5px',

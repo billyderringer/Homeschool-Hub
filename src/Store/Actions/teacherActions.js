@@ -6,6 +6,18 @@ const actions = {
     },
     setTeacherId:(teacherId) => {
         return {type: constants.GET_TEACHER_ID, teacherId}
+    },
+    openRegister:() => {
+        return {type: constants.OPEN_REGISTER}
+    },
+    closeRegister:() => {
+        return {type: constants.CLOSE_REGISTER}
+    },
+    openLogin:() => {
+        return {type: constants.OPEN_LOGIN}
+    },
+    closeLogin:() => {
+        return {type: constants.CLOSE_LOGIN}
     }
 }
 

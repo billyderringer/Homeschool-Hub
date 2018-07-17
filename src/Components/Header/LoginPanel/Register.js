@@ -134,6 +134,7 @@ class Register extends Component{
                                onChange={this.handleChange}
                                type="text"
                                placeholder="First Name"
+                               required
                                style={{
                                    margin: '10px 0',
                                    padding: '5px',
@@ -145,6 +146,7 @@ class Register extends Component{
                                onChange={this.handleChange}
                                type="text"
                                placeholder="Last Name"
+                               required
                                style={{
                                    margin: '10px 0',
                                    padding: '5px',
@@ -156,6 +158,7 @@ class Register extends Component{
                                onChange={this.handleChange}
                                type="email"
                                placeholder="Email"
+                               required
                                style={{
                                    margin: '10px 0',
                                    padding: '5px',
@@ -167,6 +170,7 @@ class Register extends Component{
                                onChange={this.handleChange}
                                type="password"
                                placeholder="Password"
+                               required
                                style={{
                                    margin: '10px 0',
                                    padding: '5px',
@@ -177,7 +181,7 @@ class Register extends Component{
                             <button type="submit"
                                     className="green-button"
                                     style={{marginLeft: '0'}}
-                            >Login
+                            >Register
                             </button>
                             <button type="button"
                                     onClick={this.props.closeRegister}
