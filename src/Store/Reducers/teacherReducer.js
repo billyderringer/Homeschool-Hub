@@ -17,19 +17,23 @@ const reducer = (state = initialState, action) => {
                 lastName: action.lastName,
                 userName: action.userName,
                 password: action.password,
-                teacherId: action.teacherId,
-                isLoggedIn: true
+                teacherId: action.teacherId
             }
         case 'SET_TEACHER_ID':
             return {
                 ...state,
-                teacherId: action.teacherId
+                teacherId: action.teacherId.data.id,
+                isLoggedIn: !state.isLoggedIn
             }
         case 'LOAD_TEACHER':
-            console.log(action)
             return {
                 ...state,
                 teacherId: action.teacherId
+            }
+        case 'LOGOUT_TEACHER':
+            return {
+                ...state,
+                isLoggedIn: !state.isLoggedIn
             }
         case 'OPEN_REGISTER':
             return {

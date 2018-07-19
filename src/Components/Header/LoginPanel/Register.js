@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import axios from 'axios'
 import Modal from 'react-modal'
 import TeacherAPI from '../../../Data/API/teacher'
-import { apiURL } from '../../../Data/data'
 
 const teacherApi = new TeacherAPI()
 
@@ -20,6 +18,8 @@ class Register extends Component{
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.switchModal = this.switchModal.bind(this)
+        this.registeredLogin = this.registeredLogin.bind(this)
+        this.setTeacherId = this.setTeacherId.bind(this)
         this.setTeacherData = this.setTeacherData.bind(this)
     }
 
@@ -64,19 +64,28 @@ class Register extends Component{
             password
         }
 
-        teacherApi.registerTeacher(registerUser, loginUser)
-        this.props.closeRegister()
+        teacherApi.registerTeacher(registerUser,loginUser, this.registeredLogin)
+
         this.setState({
             firstName: '',
             lastName: '',
             email: '',
             password: ''
         })
-        teacherApi.getTeacherFullInfo(this.setTeacherData)
+
+        this.props.closeRegister()
+    }
+
+    registeredLogin(loginUser){
+        teacherApi.loginTeacher(loginUser, this.setTeacherId)
+    }
+
+    setTeacherId(id){
+        teacherApi.getTeacherId(id, this.setTeacherData)
     }
 
     setTeacherData(teacher){
-        this.props.loadTeacherData(teacher)
+        this.props.setTeacherId(teacher)
     }
 
     render(){
@@ -211,6 +220,10 @@ const mapDispatchToProps = (dispatch) => {
     return{
         registerTeacher:(teacher) => {
             const action = {type: 'REGISTER_TEACHER', teacher}
+            dispatch(action)
+        },
+        setTeacherId:(teacherId) => {
+            const action = {type: 'SET_TEACHER_ID', teacherId}
             dispatch(action)
         },
         loadTeacherData:(teacher) => {

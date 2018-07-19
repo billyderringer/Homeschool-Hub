@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './NotifPanel.css'
-import Logout from "./Logout";
+import Logout from "./Logout.js"
 
 class NotifPanel extends Component{
     render(){

@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Modal from 'react-modal'
 import TeacherAPI from '../../../Data/API/teacher'
-import axios from "axios/index"
-import { apiURL } from '../../../Data/data'
 
 const teacherApi = new TeacherAPI()
 
@@ -19,6 +17,7 @@ class Login extends Component{
         this.handleSubmit = this.handleSubmit.bind(this)
         this.switchModal = this.switchModal.bind(this)
         this.loginTeacher = this.loginTeacher.bind(this)
+        this.setTeacherId = this.setTeacherId.bind(this)
         this.setTeacherData = this.setTeacherData.bind(this)
     }
 
@@ -43,6 +42,9 @@ class Login extends Component{
 
     //api stuff
     loginTeacher(){
+        sessionStorage.removeItem('token')
+        sessionStorage.removeItem('teacherId')
+
         const {
             email,
             password
@@ -53,19 +55,25 @@ class Login extends Component{
             password
         }
 
-        teacherApi.loginTeacher(loginUser)
-        this.props.closeLogin()
+        teacherApi.loginTeacher(loginUser, this.setTeacherId)
+
         this.setState({
             firstName: '',
             lastName: '',
             email: '',
             password: ''
         })
-        teacherApi.getTeacherFullInfo(this.setTeacherData)
+
+        this.props.closeLogin()
+        //teacherApi.getTeacherFullInfo(this.setTeacherData)
+    }
+
+    setTeacherId(id){
+        teacherApi.getTeacherId(id, this.setTeacherData)
     }
 
     setTeacherData(teacher){
-        this.props.loadTeacherData(teacher)
+        this.props.setTeacherId(teacher)
     }
 
     render(){

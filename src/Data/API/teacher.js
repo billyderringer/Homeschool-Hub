@@ -1,14 +1,10 @@
 import { apiURL } from '../data'
 import axios from 'axios'
 
-
-let token,
-    teacherId
-
 class TeacherAPI {
 
     //register new teacher & login teacher
-    registerTeacher(registerUser, loginUser){
+    registerTeacher(registerUser,loginUser, cb){
         axios(`${apiURL}/teacher/register`, {
             headers: {
                 'Content-Type': 'application/json'
@@ -16,16 +12,14 @@ class TeacherAPI {
             method: 'POST',
             data: JSON.stringify(registerUser)
         })
-            .then(() => {
-                this.loginTeacher(loginUser)
-            })
+            .then(() => cb(loginUser))
             .catch(err => {
                 console.log(err);
             })
     }
 
     //login & set jwt to sessionStorage, then call setTeacherId()
-    loginTeacher(loginUser){
+    loginTeacher(loginUser, cb){
         axios(`${apiURL}/teacher/login`, {
             headers: {
                 'Content-Type': 'application/json'
@@ -34,28 +28,25 @@ class TeacherAPI {
             data: JSON.stringify(loginUser)
         })
             .then (res => {
-                res.setHeader(`Set-Cookie: token=${res.data.token}; Secure; HttpOnly`)
-                token = res.data.token
-                //sessionStorage.setItem('token', res.data.token)
+                sessionStorage.setItem('token', res.data.token)
+                cb(res.data.token)
             })
-            .then(() => this.getTeacherId())
             .catch(err => {
                 console.log(err);
             })
     }
 
     //gets teacher ObjectID
-    getTeacherId(){
+    getTeacherId(token, cb){
         axios({
             "url": `${apiURL}/teacher/me`,
             "method": "GET",
             "headers": {"Authorization": "Bearer " + token}
         })
             .then(res => {
-                console.log(res)
                 sessionStorage.setItem('teacherId', res.data.id)
+                cb(res)
             })
-            .then(() =>  this.getTeacherFullInfo())
             .catch(err => {
                 console.log(err)
             })

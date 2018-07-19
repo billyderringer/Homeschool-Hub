@@ -13,6 +13,9 @@ const actions = {
     loadTeacherData:(teacher) => {
         return {type: constants.GET_TEACHER_ID, teacher}
     },
+    logoutTeacher:() => {
+        return {type: constants.LOGOUT_TEACHER}
+    },
 
     //modal actions
     openRegister:() => {
