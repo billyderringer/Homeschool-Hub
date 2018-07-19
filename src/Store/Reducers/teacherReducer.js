@@ -25,6 +25,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 teacherId: action.teacherId
             }
+        case 'LOAD_TEACHER':
+            console.log(action)
+            return {
+                ...state,
+                teacherId: action.teacherId
+            }
         case 'OPEN_REGISTER':
             return {
                 ...state,

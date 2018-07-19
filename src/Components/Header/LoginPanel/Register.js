@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import Modal from 'react-modal'
+import TeacherAPI from '../../../Data/API/teacher'
+import { apiURL } from '../../../Data/data'
+
+const teacherApi = new TeacherAPI()
 
 class Register extends Component{
     constructor(props) {
@@ -15,9 +19,8 @@ class Register extends Component{
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.registerTeacher = this.registerTeacher.bind(this)
-        this.loginTeacher = this.loginTeacher.bind(this)
         this.switchModal = this.switchModal.bind(this)
+        this.setTeacherData = this.setTeacherData.bind(this)
     }
 
     handleChange(event) {
@@ -36,53 +39,44 @@ class Register extends Component{
     }
 
     switchModal(){
-        this.props.closeRegister()
         this.props.openLogin()
+        this.props.closeRegister()
     }
 
+    //api stuff
     registerTeacher(){
-        axios.post('http://localhost:3005/api/v1/teacher/register', {
-            "firstName": this.state.firstName,
-            "lastName": this.state.lastName,
-            "email": this.state.username,
-            "password": this.state.password
+        const {
+            firstName,
+            lastName,
+            email,
+            password
+        } = this.state;
+
+        const registerUser = {
+            firstName,
+            lastName,
+            email,
+            password
+        }
+
+        const loginUser = {
+            email,
+            password
+        }
+
+        teacherApi.registerTeacher(registerUser, loginUser)
+        this.props.closeRegister()
+        this.setState({
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: ''
         })
-            .then(res => {
-                console.log(res)
-            })
-            .catch(function (err) {
-                console.log(err);
-            })
+        teacherApi.getTeacherFullInfo(this.setTeacherData)
     }
 
-    loginTeacher(){
-        axios.post('http://localhost:3005/api/v1/teacher/login', {
-            "email": this.state.username,
-            "password": this.state.password
-        })
-            .then(res => {
-                sessionStorage.setItem('token', res.data.token)
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-        this.setTeacherId()
-    }
-
-    setTeacherId(){
-        axios({
-            "url": "http://localhost:3005/api/v1/teacher/me",
-            "method": "GET",
-            "headers": {
-                "Authorization": "Bearer " + sessionStorage.getItem('token')
-            }
-        })
-            .then(res => {
-                this.props.setTeacherId(res.data.id)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+    setTeacherData(teacher){
+        this.props.loadTeacherData(teacher)
     }
 
     render(){
@@ -154,7 +148,7 @@ class Register extends Component{
                                    backgroundColor: 'rgba(255,255,255,.1)'
                                }}/>
                         <input id="username-register"
-                               name="username"
+                               name="email"
                                onChange={this.handleChange}
                                type="email"
                                placeholder="Email"
@@ -217,6 +211,10 @@ const mapDispatchToProps = (dispatch) => {
     return{
         registerTeacher:(teacher) => {
             const action = {type: 'REGISTER_TEACHER', teacher}
+            dispatch(action)
+        },
+        loadTeacherData:(teacher) => {
+            const action = {type: 'LOAD_TEACHER', teacher}
             dispatch(action)
         }
     }

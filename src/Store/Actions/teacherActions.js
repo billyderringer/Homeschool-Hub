@@ -1,12 +1,20 @@
 import constants from './constants'
+import axios from "axios/index";
 
 const actions = {
-    registerTeacher:(teacher) => {
-        return {type: constants.REGISTER_TEACHER, teacher}
+
+    //teacher actions
+    registerTeacher:(user) => {
+        return {type: constants.REGISTER_TEACHER, user}
     },
     setTeacherId:(teacherId) => {
         return {type: constants.GET_TEACHER_ID, teacherId}
     },
+    loadTeacherData:(teacher) => {
+        return {type: constants.GET_TEACHER_ID, teacher}
+    },
+
+    //modal actions
     openRegister:() => {
         return {type: constants.OPEN_REGISTER}
     },

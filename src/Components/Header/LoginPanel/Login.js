@@ -1,20 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import axios from 'axios'
 import Modal from 'react-modal'
+import TeacherAPI from '../../../Data/API/teacher'
+import axios from "axios/index"
+import { apiURL } from '../../../Data/data'
+
+const teacherApi = new TeacherAPI()
 
 class Login extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
+            value: '',
+            username: '',
+            password: ''
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.loginTeacher = this.loginTeacher.bind(this)
-        this.setTeacherId = this.setTeacherId.bind(this)
-        this.logoutTeacher = this.logoutTeacher.bind(this)
         this.switchModal = this.switchModal.bind(this)
+        this.loginTeacher = this.loginTeacher.bind(this)
+        this.setTeacherData = this.setTeacherData.bind(this)
     }
 
     handleChange(event) {
@@ -36,39 +41,31 @@ class Login extends Component{
         this.props.openRegister()
     }
 
-    //api calls
+    //api stuff
     loginTeacher(){
-        axios.post('http://localhost:3008/api/v1/teacher/login', {
-            "email": this.state.username,
-            "password": this.state.password
+        const {
+            email,
+            password
+        } = this.state;
+
+        const loginUser = {
+            email,
+            password
+        }
+
+        teacherApi.loginTeacher(loginUser)
+        this.props.closeLogin()
+        this.setState({
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: ''
         })
-            .then(res => {
-                sessionStorage.setItem('token', res.data.token)
-                this.setTeacherId()
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+        teacherApi.getTeacherFullInfo(this.setTeacherData)
     }
 
-    setTeacherId(){
-        axios({
-            "url": "http://localhost:3005/api/v1/teacher/me",
-            "method": "GET",
-            "headers": {
-                "Authorization": "Bearer " + sessionStorage.getItem('token')
-            }
-        })
-            .then(res => {
-                this.props.setTeacherId(res.data.id)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
-
-    logoutTeacher(){
-        sessionStorage.removeItem('token')
+    setTeacherData(teacher){
+        this.props.loadTeacherData(teacher)
     }
 
     render(){
@@ -114,7 +111,7 @@ class Login extends Component{
                               id="login-form"
                               onSubmit={this.handleSubmit}>
                             <input id="username-login"
-                                   name="username"
+                                   name="email"
                                    onChange={this.handleChange}
                                    type="email"
                                    placeholder="Email"
@@ -178,6 +175,10 @@ const mapDispatchToProps = (dispatch) => {
     return{
         setTeacherId:(teacherId) => {
             const action = {type: 'SET_TEACHER_ID', teacherId}
+            dispatch(action)
+        },
+        loadTeacherData:(teacher) => {
+            const action = {type: 'LOAD_TEACHER', teacher}
             dispatch(action)
         }
     }
