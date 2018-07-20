@@ -8,10 +8,13 @@ const actions = {
         return {type: constants.REGISTER_TEACHER, user}
     },
     setTeacherId:(teacherId) => {
-        return {type: constants.GET_TEACHER_ID, teacherId}
+        return {type: constants.SET_TEACHER_ID, teacherId}
     },
     loadTeacherData:(teacher) => {
-        return {type: constants.GET_TEACHER_ID, teacher}
+        return {type: constants.LOAD_TEACHER, teacher}
+    },
+    loadTeacherFullData:(teacher) => {
+        return {type: constants.LOAD_TEACHER_DATA, teacher}
     },
     logoutTeacher:() => {
         return {type: constants.LOGOUT_TEACHER}

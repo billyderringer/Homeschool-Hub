@@ -70,7 +70,7 @@ a:active, a:focus {
     color: inherit;
     cursor: pointer; }
 
-#container-dashboard {
+.container-dashboard {
   height: 90vh; }
 
 /*# sourceMappingURL=Dashboard.css.map */

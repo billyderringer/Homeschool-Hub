@@ -42,8 +42,8 @@ class Login extends Component{
 
     //api stuff
     loginTeacher(){
-        sessionStorage.removeItem('token')
-        sessionStorage.removeItem('teacherId')
+        localStorage.removeItem('token')
+        localStorage.removeItem('teacherId')
 
         const {
             email,
@@ -65,7 +65,6 @@ class Login extends Component{
         })
 
         this.props.closeLogin()
-        //teacherApi.getTeacherFullInfo(this.setTeacherData)
     }
 
     setTeacherId(id){

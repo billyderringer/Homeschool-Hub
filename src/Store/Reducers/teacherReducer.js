@@ -13,6 +13,7 @@ const reducer = (state = initialState, action) => {
     switch(action.type) {
         case 'REGISTER_TEACHER':
             return {
+                ...state,
                 firstName: action.firstName,
                 lastName: action.lastName,
                 userName: action.userName,
@@ -30,10 +31,19 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 teacherId: action.teacherId
             }
-        case 'LOGOUT_TEACHER':
+        case 'LOAD_TEACHER_DATA':
             return {
-                ...state,
-                isLoggedIn: !state.isLoggedIn
+                state: action.teacher.data,
+                isLoggedIn: true
+            }
+        case 'LOGOUT_TEACHER':
+            localStorage.removeItem('token')
+            localStorage.removeItem('teacherId')
+            return {
+                state: '',
+                isLoggedIn: !state.isLoggedIn,
+                openLogin: false,
+                openRegister: false
             }
         case 'OPEN_REGISTER':
             return {

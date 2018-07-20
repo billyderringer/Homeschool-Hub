@@ -28,7 +28,7 @@ class TeacherAPI {
             data: JSON.stringify(loginUser)
         })
             .then (res => {
-                sessionStorage.setItem('token', res.data.token)
+                localStorage.setItem('token', res.data.token)
                 cb(res.data.token)
             })
             .catch(err => {
@@ -44,7 +44,7 @@ class TeacherAPI {
             "headers": {"Authorization": "Bearer " + token}
         })
             .then(res => {
-                sessionStorage.setItem('teacherId', res.data.id)
+                localStorage.setItem('teacherId', res.data.id)
                 cb(res)
             })
             .catch(err => {
@@ -54,9 +54,9 @@ class TeacherAPI {
 
     getTeacherFullInfo(cb){
         axios({
-            "url": `${apiURL}/teacher/${sessionStorage.getItem('teacherId')}`,
+            "url": `${apiURL}/teacher/${localStorage.getItem('teacherId')}`,
             "method": "GET",
-            "headers": {"Authorization": "Bearer " + sessionStorage.getItem('token')}
+            "headers": {"Authorization": "Bearer " + localStorage.getItem('token')}
         })
             .then(res => {
                 cb(res)
@@ -65,12 +65,6 @@ class TeacherAPI {
                 console.log(err)
             })
     }
-
-    logoutTeacher(){
-        sessionStorage.removeItem('token')
-        sessionStorage.removeItem('teacherId')
-    }
-
 }
 
 export default TeacherAPI

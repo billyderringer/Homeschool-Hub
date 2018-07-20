@@ -7,7 +7,7 @@ class Body extends Component{
     render(){
         return(
             <React.Fragment>
-                { this.props.teacher.isLoggedIn ?
+                { localStorage.getItem('token') && localStorage.getItem('teacherId') ?
                      <Dashboard /> : <Splash />}
             </React.Fragment>
         )
