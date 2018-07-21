@@ -11,7 +11,7 @@
   color: $white;
 
   #header-brand{
-    margin-left: 20px;
+    padding-left: 20px;
 
     h2{
       font-size: .95em;
@@ -21,9 +21,5 @@
       height: 3vh;
       margin-right: 5px;
     }
-  }
-
-  .menu-panel{
-    margin-right: 20px;
   }
 }

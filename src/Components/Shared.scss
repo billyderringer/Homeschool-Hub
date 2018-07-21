@@ -77,6 +77,37 @@ a:active, a:focus {
   visibility: hidden;
 }
 
+//modal stuff
+.container-modal{
+  flex-direction: column;
+  .modal-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $off-black;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    width: 120%;
+    .modal-title{
+      font-size: .9em;
+      color: $light-green;
+    }
+    .modal-logo{
+      height: 20px;
+    }
+  }
+  form{
+    flex-direction: column;
+    input{
+      padding: 5px;
+      color: #fff;
+      background-color: rgba(255,255,255,.1);
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+}
+
 //etc
 .center-all-flex{
   display: flex;
@@ -87,6 +118,10 @@ a:active, a:focus {
 .flex-form{
   display: flex;
   flex-direction: column;
+}
+
+.button-row{
+  margin-top: 10px;
 }
 
 @mixin hover-button($bgColor, $textColor){
@@ -114,6 +149,21 @@ a:active, a:focus {
   }
 }
 
+@mixin outline-link($textColor){
+  background-color: transparent;
+  color: $textColor;
+  padding: 3px 5px;
+  &:hover{
+    outline: 1px solid $textColor;
+    color: $textColor;
+    cursor: pointer;
+  }
+}
+
 .green-link{
   @include hover-link(inherit, $light-green)
+}
+
+.menu-link{
+  @include outline-link($light-green)
 }

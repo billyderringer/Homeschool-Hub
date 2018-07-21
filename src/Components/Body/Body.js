@@ -7,7 +7,8 @@ class Body extends Component{
     render(){
         return(
             <React.Fragment>
-                { localStorage.getItem('token') && localStorage.getItem('teacherId') ?
+                { localStorage.getItem('token') &&
+                localStorage.getItem('teacherId') ?
                      <Dashboard /> : <Splash />}
             </React.Fragment>
         )
@@ -15,7 +16,7 @@ class Body extends Component{
 }
 
 const mapStateToProps = state => ({
-    teacher: state.teacherReducer
+    teacher: state.teacherReducer.currentTeacher
 })
 
 export default connect(mapStateToProps)(Body)

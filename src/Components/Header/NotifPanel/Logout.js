@@ -14,7 +14,7 @@ class Logout extends Component{
     render(){
         return(
             <React.Fragment>
-                <button className="menu-button green-button"
+                <button className="menu-link"
                         onClick={this.logout}>
                     Logout
                 </button>

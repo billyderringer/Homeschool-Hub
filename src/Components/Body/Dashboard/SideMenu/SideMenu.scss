@@ -1,0 +1,26 @@
+@import "../../../Shared";
+
+#side-menu{
+  width: 15vw;
+  height: 90vh;
+  background-color: $off-black;
+  #profile-header{
+    flex-direction: column;
+    padding: 20px 0;
+    background-color: $off-black;
+    border-bottom: 2px solid $black;
+    margin-bottom: 30px;
+    img{
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid $light-green;
+      margin-bottom: 10px;
+    }
+    h2{
+      font-size: 1em;
+      color: $light-green;
+    }
+  }
+
+}

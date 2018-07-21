@@ -19,6 +19,7 @@ class Login extends Component{
         this.loginTeacher = this.loginTeacher.bind(this)
         this.setTeacherId = this.setTeacherId.bind(this)
         this.setTeacherData = this.setTeacherData.bind(this)
+        this.setTeacherFullData = this.setTeacherFullData.bind(this)
     }
 
     handleChange(event) {
@@ -67,13 +68,19 @@ class Login extends Component{
         this.props.closeLogin()
     }
 
-    setTeacherId(id){
-        teacherApi.getTeacherId(id, this.setTeacherData)
+    setTeacherId(token){
+        teacherApi.getTeacherId(token, this.setTeacherData)
     }
 
-    setTeacherData(teacher){
-        this.props.setTeacherId(teacher)
+    setTeacherData(){
+        teacherApi.getTeacherFullInfo(this.setTeacherFullData)
     }
+
+    setTeacherFullData(teacher){
+        this.props.setTeacherFullData(teacher)
+    }
+
+
 
     render(){
         return(
@@ -83,26 +90,7 @@ class Login extends Component{
                        onRequestClose={this.closeLogin}
                        ariaHideApp={false}
                        contentLabel="Sign In Modal"
-                       style={{
-                           overlay: {
-                               display: 'flex',
-                               justifyContent: 'center',
-                               alignItems: 'center',
-                               backgroundColor: 'rgba(0,0,0,.75)',
-                               color: 'rgba(255,255,255,.8)'
-                           },
-                           content: {
-                               top: 'auto',
-                               bottom: 'auto',
-                               left: 'auto',
-                               right: 'auto',
-                               padding: '40px 20px',
-                               borderRadius: '0',
-                               border: 'none',
-                               backgroundColor: 'rgba(0,0,0,.8)',
-                               color: 'rgba(255,255,255,.8)'
-                           }
-                       }}>
+                       style={this.props.styles}>
                     <div id="modal-login"
                          className="modal-container"
                          style={{textAlign: 'center'}}>
@@ -184,8 +172,8 @@ const mapDispatchToProps = (dispatch) => {
             const action = {type: 'SET_TEACHER_ID', teacherId}
             dispatch(action)
         },
-        loadTeacherData:(teacher) => {
-            const action = {type: 'LOAD_TEACHER', teacher}
+        setTeacherFullData:(teacher) => {
+            const action = {type: 'SET_TEACHER_DATA', teacher}
             dispatch(action)
         }
     }

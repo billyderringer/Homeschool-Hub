@@ -106,13 +106,24 @@ a:active, a:focus {
     color: #2bbbad;
     cursor: pointer; }
 
-#login-panel {
-  height: 5vh;
-  padding: 0 20px;
-  background-color: #232323;
-  align-self: right; }
+#side-menu {
+  width: 15vw;
+  height: 90vh;
+  background-color: #3b3b3b; }
+  #side-menu #profile-header {
+    flex-direction: column;
+    padding: 20px 0;
+    background-color: #3b3b3b;
+    border-bottom: 2px solid #232323;
+    margin-bottom: 30px; }
+    #side-menu #profile-header img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid #2bbbad;
+      margin-bottom: 10px; }
+    #side-menu #profile-header h2 {
+      font-size: 1em;
+      color: #2bbbad; }
 
-.modal-container {
-  flex-direction: column; }
-
-/*# sourceMappingURL=LoginPanel.css.map */
+/*# sourceMappingURL=SideMenu.css.map */

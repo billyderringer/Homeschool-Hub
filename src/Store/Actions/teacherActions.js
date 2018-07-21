@@ -10,11 +10,8 @@ const actions = {
     setTeacherId:(teacherId) => {
         return {type: constants.SET_TEACHER_ID, teacherId}
     },
-    loadTeacherData:(teacher) => {
-        return {type: constants.LOAD_TEACHER, teacher}
-    },
-    loadTeacherFullData:(teacher) => {
-        return {type: constants.LOAD_TEACHER_DATA, teacher}
+    setTeacherFullData:(teacher) => {
+        return {type: constants.SET_TEACHER_DATA, teacher}
     },
     logoutTeacher:() => {
         return {type: constants.LOGOUT_TEACHER}

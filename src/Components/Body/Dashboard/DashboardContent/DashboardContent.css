@@ -106,13 +106,8 @@ a:active, a:focus {
     color: #2bbbad;
     cursor: pointer; }
 
-#login-panel {
-  height: 5vh;
-  padding: 0 20px;
-  background-color: #232323;
-  align-self: right; }
+#dashboard-content {
+  width: 85vw;
+  height: 90vh; }
 
-.modal-container {
-  flex-direction: column; }
-
-/*# sourceMappingURL=LoginPanel.css.map */
+/*# sourceMappingURL=DashboardContent.css.map */

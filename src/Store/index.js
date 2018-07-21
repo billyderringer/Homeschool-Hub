@@ -1,9 +1,11 @@
 import { createStore, combineReducers } from 'redux'
+import styleReducer from './Reducers/styleReducer'
 import teacherReducer from './Reducers/teacherReducer'
 //import {loadState, saveState} from './localStorage'
 
 //const persistedState = loadState()
 const reducer = combineReducers({
+    styleReducer,
     teacherReducer
 })
 

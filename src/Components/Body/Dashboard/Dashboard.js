@@ -1,26 +1,26 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './Dashboard.css'
-import TeacherAPI from '../../../Data/API/teacher'
-
-const teacherApi = new TeacherAPI()
+import SideMenu from './SideMenu'
+import DashboardContent from './DashboardContent'
 
 class Dashboard extends Component{
 
-    componentWillMount(){
-        teacherApi.getTeacherFullInfo(this.props.loadTeacherFullData)
-    }
-
     render(){
-        const teacher = this.props.teacher
-        const checkRender =
-            teacher !== undefined ?
-                <h1>Hello {teacher.firstName}</h1>:
-                <h1>Loading</h1>
-
+        const {teacher} = this.props
         return(
-            <div className="container-dashboard center-all-flex">
-                {checkRender}
+            <div>
+                {teacher !== {} ?
+                    <div className="container-dashboard center-all-flex">
+                        <SideMenu teacher={this.props.teacher}
+                                  modal={this.props.modal} />
+                        <DashboardContent teacher={this.props.teacher}
+                                          modal={this.props.modal} />
+                    </div> :
+                    <div className="center-all-flex">
+                        Loading...
+                    </div>
+                }
             </div>
 
         )
@@ -29,17 +29,9 @@ class Dashboard extends Component{
 
 const mapStateToProps = (state) => {
     return{
-        teacher: state.teacherReducer.state
+        modal: state.styleReducer.modal,
+        teacher: state.teacherReducer.currentTeacher
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        loadTeacherFullData:(teacher) => {
-            const action = {type: 'LOAD_TEACHER_DATA', teacher}
-            dispatch(action)
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps) (Dashboard)
+export default connect(mapStateToProps) (Dashboard)

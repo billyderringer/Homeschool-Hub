@@ -1,7 +1,10 @@
 @import "../../Shared";
 
 #login-panel{
-  margin-right: 20px;
+  height: 5vh;
+  padding: 0 20px;
+  background-color: $black;
+  align-self: right;
 }
 
 .modal-container{

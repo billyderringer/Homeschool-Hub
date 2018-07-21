@@ -1,0 +1,16 @@
+@import "../../../../Shared";
+
+#container-term{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px;
+  .menu-title{
+    font-size: .8em;
+    color: $light-green;
+  }
+  .menu-icon{
+    color: $light-green;
+  }
+
+}

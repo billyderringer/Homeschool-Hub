@@ -2,4 +2,9 @@
 
 #container-footer{
   height: 5vh;
+  font-size: .6em;
+  background-color: $black;
+  h3{
+    color: $white;
+  }
 }

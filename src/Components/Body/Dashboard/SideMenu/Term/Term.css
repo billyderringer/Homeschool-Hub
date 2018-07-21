@@ -106,13 +106,15 @@ a:active, a:focus {
     color: #2bbbad;
     cursor: pointer; }
 
-#login-panel {
-  height: 5vh;
-  padding: 0 20px;
-  background-color: #232323;
-  align-self: right; }
+#container-term {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px; }
+  #container-term .menu-title {
+    font-size: .8em;
+    color: #2bbbad; }
+  #container-term .menu-icon {
+    color: #2bbbad; }
 
-.modal-container {
-  flex-direction: column; }
-
-/*# sourceMappingURL=LoginPanel.css.map */
+/*# sourceMappingURL=Term.css.map */
