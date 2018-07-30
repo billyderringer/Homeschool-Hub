@@ -7,6 +7,7 @@ class TeacherAPI {
     registerTeacher(registerUser,loginUser, cb){
         axios(`${apiURL}/teacher/register`, {
             headers: {
+                'Access-Control-Allow-Origin': 'https://hsk-12.herokuapp.com',
                 'Content-Type': 'application/json'
             },
             method: 'POST',
@@ -24,6 +25,7 @@ class TeacherAPI {
     loginTeacher(loginUser, cb){
         axios(`${apiURL}/teacher/login`, {
             headers: {
+                'Access-Control-Allow-Origin': 'https://hsk-12.herokuapp.com',
                 'Content-Type': 'application/json'
             },
             method: 'POST',
@@ -43,7 +45,10 @@ class TeacherAPI {
         axios({
             url: `${apiURL}/teacher/me`,
             method: "GET",
-            headers: {"Authorization": "Bearer " + token}
+            headers: {
+                'Access-Control-Allow-Origin': 'https://hsk-12.herokuapp.com',
+                "Authorization": "Bearer " + token
+            }
         })
             .then(res => {
                 localStorage.setItem('teacherId', res.data.id)
@@ -58,7 +63,10 @@ class TeacherAPI {
         axios({
             url: `${apiURL}/teacher/${localStorage.getItem('teacherId')}`,
             method: "GET",
-            headers: {"Authorization": "Bearer " + localStorage.getItem('token')}
+            headers: {
+                'Access-Control-Allow-Origin': 'https://hsk-12.herokuapp.com',
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            }
         })
             .then(res => {
                 cb(res)
