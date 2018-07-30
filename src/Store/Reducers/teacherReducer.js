@@ -2,7 +2,11 @@ const initialState = {
     currentTeacher: {},
     isLoggedIn: false,
     openLogin: false,
-    openRegister: false
+    openRegister: false,
+    hasTerm: false,
+    hasStudent: false,
+    hasSubject: false,
+    hasAssignment: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -14,21 +18,20 @@ const reducer = (state = initialState, action) => {
         case 'SET_TEACHER_ID':
             return {
                 ...state,
-                teacherId: action.teacherId.data.id,
-                isLoggedIn: !state.isLoggedIn
+                teacherId: action.teacherId.data.id
             }
         case 'SET_TEACHER_DATA':
+            const loggedIn = !!(localStorage.getItem('token') && localStorage.getItem('teacherId'))
             return {
+                ...state,
                 currentTeacher: action.teacher.data,
-                isLoggedIn: true
+                isLoggedIn: loggedIn
             }
         case 'LOGOUT_TEACHER':
             localStorage.removeItem('token')
             localStorage.removeItem('teacherId')
             return {
-                isLoggedIn: !state.isLoggedIn,
-                openLogin: false,
-                openRegister: false
+                isLoggedIn: false
             }
         case 'OPEN_REGISTER':
             return {

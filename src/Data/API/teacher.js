@@ -12,7 +12,9 @@ class TeacherAPI {
             method: 'POST',
             data: JSON.stringify(registerUser)
         })
-            .then(() => cb(loginUser))
+            .then(() =>{
+                cb(loginUser)
+            })
             .catch(err => {
                 console.log(err);
             })
@@ -39,9 +41,9 @@ class TeacherAPI {
     //gets teacher ObjectID
     getTeacherId(token, cb){
         axios({
-            "url": `${apiURL}/teacher/me`,
-            "method": "GET",
-            "headers": {"Authorization": "Bearer " + token}
+            url: `${apiURL}/teacher/me`,
+            method: "GET",
+            headers: {"Authorization": "Bearer " + token}
         })
             .then(res => {
                 localStorage.setItem('teacherId', res.data.id)
@@ -54,9 +56,9 @@ class TeacherAPI {
 
     getTeacherFullInfo(cb){
         axios({
-            "url": `${apiURL}/teacher/${localStorage.getItem('teacherId')}`,
-            "method": "GET",
-            "headers": {"Authorization": "Bearer " + localStorage.getItem('token')}
+            url: `${apiURL}/teacher/${localStorage.getItem('teacherId')}`,
+            method: "GET",
+            headers: {"Authorization": "Bearer " + localStorage.getItem('token')}
         })
             .then(res => {
                 cb(res)

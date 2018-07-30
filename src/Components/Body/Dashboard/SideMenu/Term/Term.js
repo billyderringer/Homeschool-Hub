@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import './Term.css'
 import Modal from 'react-modal'
+import GenericApi from '../../../../../Data/API/generic'
+import Selector from "../../../../Selector"
+
+const genericApi = new GenericApi()
 
 class Term extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            isModalOpen: false
+            isModalOpen: false,
+            termTitle: '',
+            termStart: '',
+            termEnd: ''
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -22,6 +30,7 @@ class Term extends Component{
 
     handleSubmit(event) {
         event.preventDefault()
+        this.addTerm()
         this.setState({
             value: ''
         })
@@ -35,28 +44,42 @@ class Term extends Component{
 
     addTerm(){
 
+        const body = {
+            "termTitle": this.state.termTitle,
+            "termStart": this.state.termStart,
+            "termEnd": this.state.termEnd
+        }
+
+        genericApi.addElement(body, "term", localStorage.getItem('teacherId'))
+        this.setState({isModalOpen: !this.state.isModalOpen})
     }
 
 
     render(){
         return(
-            <div id="container-term">
+            <section id="container-term"
+                 className="container-menu">
+
+                <section id="term-header">
                     <h4 className="menu-title">Terms</h4>
                     <i className="fas fa-plus-square menu-icon"
                        onClick={this.handleModal} />
+                </section>
+
+                <Selector name="Terms" options={this.props.teacher.terms}/>
 
                 <Modal isOpen={this.state.isModalOpen}
                        onRequestClose={this.closeModal}
                        ariaHideApp={false}
                        contentLabel="Sign In Modal"
                        style={this.props.styles.modal}>
-                    <div className="container-modal center-all-flex">
-                        <div className="modal-header">
+                    <section className="container-modal">
+                        <section className="modal-header">
                             <h2 className="modal-title">Add Term</h2>
                             <img src={require("../../../../../Assets/hsh-logo/hsh-logo-grn-60x60.png")}
                                  alt="homeschool hub logo"
                                  className="modal-logo"/>
-                        </div>
+                        </section>
                         <form  className="center-all-flex"
                                onSubmit={this.handleSubmit}>
                             <input type="text"
@@ -71,7 +94,7 @@ class Term extends Component{
                                    placeholder="Term End"
                                    name="termEnd"
                                    onChange={this.handleChange}/>
-                            <div className="button-row">
+                            <section className="button-row">
                                 <button type="submit"
                                         className="green-button"
                                         style={{marginLeft: '0'}}
@@ -82,13 +105,20 @@ class Term extends Component{
                                         className="green-button"
                                 >Cancel
                                 </button>
-                            </div>
+                            </section>
                         </form>
-                    </div>
+                    </section>
                 </Modal>
-            </div>
+            </section>
         )
     }
 }
 
-export default Term
+const mapStateToProps = (state) =>{
+    return{
+        styles: state.styleReducer,
+        teacher: state.teacherReducer.currentTeacher
+    }
+}
+
+export default connect(mapStateToProps)(Term)

@@ -78,6 +78,10 @@ a:active, a:focus {
 }
 
 //modal stuff
+.container-menu {
+  margin-top: 30px;
+}
+
 .container-modal{
   flex-direction: column;
   .modal-header{
@@ -105,14 +109,32 @@ a:active, a:focus {
       width: 100%;
       margin-bottom: 10px;
     }
+    select{
+      padding: 5px;
+      color: #fff;
+      border: none;
+      background-color: rgba(255,255,255,.1);
+      margin-bottom: 10px;
+      option{
+        background-color: $off-black;
+      }
+    }
   }
 }
 
-//etc
+//flex stuff
 .center-all-flex{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.flex-row{
+  flex-direction: row;
+}
+
+.flex-column{
+  flex-direction: column;
 }
 
 .flex-form{
@@ -120,6 +142,7 @@ a:active, a:focus {
   flex-direction: column;
 }
 
+//etc
 .button-row{
   margin-top: 10px;
 }
@@ -166,4 +189,11 @@ a:active, a:focus {
 
 .menu-link{
   @include outline-link($light-green)
+}
+
+.failed-render{
+  color: $light-green;
+  font-size: .75em;
+  padding-top: 20px;
+  text-align: center;
 }

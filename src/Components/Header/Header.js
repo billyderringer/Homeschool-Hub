@@ -15,8 +15,8 @@ class Header extends Component{
                     />
                     <h2>Homeschool Hub</h2>
                 </div>
-                {!this.props.teacher.isLoggedIn ?
-                    <LoginPanel /> : <NotifPanel />}
+                {this.props.teacher.isLoggedIn ?
+                    <NotifPanel /> : <LoginPanel />}
             </nav>
         )
     }

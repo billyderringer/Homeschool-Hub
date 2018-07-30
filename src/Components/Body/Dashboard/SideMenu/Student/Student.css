@@ -1,3 +1,142 @@
+*, .container-fluid, .col, .row, nav, img, ul, li, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none; }
 
+html, body {
+  height: 100%;
+  margin: 0; }
+
+a, p {
+  color: inherit; }
+
+a:hover, a:active, a:focus {
+  color: inherit;
+  text-decoration: none; }
+
+button {
+  border: none;
+  padding: 0 5px;
+  margin: 0 5px; }
+  button:hover {
+    cursor: pointer; }
+  button:focus {
+    outline: none; }
+
+input:enabled {
+  border: none;
+  outline: none; }
+
+a:active, a:hover {
+  outline: 0;
+  text-decoration: none; }
+
+a:active, a:focus {
+  outline: 0;
+  border: none; }
+
+.clearfix:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  line-height: 0;
+  visibility: hidden; }
+
+.container-menu {
+  margin-top: 30px; }
+
+.container-modal {
+  flex-direction: column; }
+  .container-modal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #3b3b3b;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    width: 120%; }
+    .container-modal .modal-header .modal-title {
+      font-size: .9em;
+      color: #2bbbad; }
+    .container-modal .modal-header .modal-logo {
+      height: 20px; }
+  .container-modal form {
+    flex-direction: column; }
+    .container-modal form input {
+      padding: 5px;
+      color: #fff;
+      background-color: rgba(255, 255, 255, 0.1);
+      width: 100%;
+      margin-bottom: 10px; }
+    .container-modal form select {
+      padding: 5px;
+      color: #fff;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.1);
+      margin-bottom: 10px; }
+      .container-modal form select option {
+        background-color: #3b3b3b; }
+
+.center-all-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.flex-row {
+  flex-direction: row; }
+
+.flex-column {
+  flex-direction: column; }
+
+.flex-form {
+  display: flex;
+  flex-direction: column; }
+
+.button-row {
+  margin-top: 10px; }
+
+.green-button {
+  background-color: #2bbbad;
+  color: #fff;
+  padding: 3px 5px; }
+  .green-button:hover {
+    background-color: #fff;
+    color: #2bbbad; }
+
+.green-link {
+  background-color: inherit;
+  color: #2bbbad;
+  padding: 3px 5px; }
+  .green-link:hover {
+    background-color: #2bbbad;
+    color: inherit;
+    cursor: pointer; }
+
+.menu-link {
+  background-color: transparent;
+  color: #2bbbad;
+  padding: 3px 5px; }
+  .menu-link:hover {
+    outline: 1px solid #2bbbad;
+    color: #2bbbad;
+    cursor: pointer; }
+
+.failed-render {
+  color: #2bbbad;
+  font-size: .75em;
+  padding-top: 20px;
+  text-align: center; }
+
+#grade-label {
+  color: #2bbbad;
+  font-size: .9em;
+  margin-right: 20px; }
+
+#grade-select {
+  width: 100%;
+  display: flex;
+  align-items: baseline; }
 
 /*# sourceMappingURL=Student.css.map */

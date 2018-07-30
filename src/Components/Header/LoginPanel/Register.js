@@ -20,6 +20,7 @@ class Register extends Component{
         this.switchModal = this.switchModal.bind(this)
         this.registeredLogin = this.registeredLogin.bind(this)
         this.setTeacherId = this.setTeacherId.bind(this)
+        this.setTeacherData = this.setTeacherData.bind(this)
         this.setTeacherFullData = this.setTeacherFullData.bind(this)
     }
 
@@ -80,8 +81,12 @@ class Register extends Component{
         teacherApi.loginTeacher(loginUser, this.setTeacherId)
     }
 
-    setTeacherId(id){
-        teacherApi.getTeacherId(id, this.setTeacherFullData)
+    setTeacherId(token){
+        teacherApi.getTeacherId(token, this.setTeacherData)
+    }
+
+    setTeacherData(){
+        teacherApi.getTeacherFullInfo(this.setTeacherFullData)
     }
 
     setTeacherFullData(teacher){

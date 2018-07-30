@@ -16,7 +16,8 @@ class SideMenu extends Component{
                     <img src={require('../../../../Assets/' + profile)} alt="profile"/>
                     <h2>{teacher.firstName} {teacher.lastName}</h2>
                 </div>
-                <Term styles={this.props.style}/>
+                <Term />
+
             </div>
         )
     }

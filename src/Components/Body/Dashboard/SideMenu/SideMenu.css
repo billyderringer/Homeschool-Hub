@@ -44,6 +44,9 @@ a:active, a:focus {
   line-height: 0;
   visibility: hidden; }
 
+.container-menu {
+  margin-top: 30px; }
+
 .container-modal {
   flex-direction: column; }
   .container-modal .modal-header {
@@ -67,11 +70,25 @@ a:active, a:focus {
       background-color: rgba(255, 255, 255, 0.1);
       width: 100%;
       margin-bottom: 10px; }
+    .container-modal form select {
+      padding: 5px;
+      color: #fff;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.1);
+      margin-bottom: 10px; }
+      .container-modal form select option {
+        background-color: #3b3b3b; }
 
 .center-all-flex {
   display: flex;
   justify-content: center;
   align-items: center; }
+
+.flex-row {
+  flex-direction: row; }
+
+.flex-column {
+  flex-direction: column; }
 
 .flex-form {
   display: flex;
@@ -106,6 +123,12 @@ a:active, a:focus {
     color: #2bbbad;
     cursor: pointer; }
 
+.failed-render {
+  color: #2bbbad;
+  font-size: .75em;
+  padding-top: 20px;
+  text-align: center; }
+
 #side-menu {
   width: 15vw;
   height: 90vh;
@@ -114,8 +137,7 @@ a:active, a:focus {
     flex-direction: column;
     padding: 20px 0;
     background-color: #3b3b3b;
-    border-bottom: 2px solid #232323;
-    margin-bottom: 30px; }
+    border-bottom: 2px solid #232323; }
     #side-menu #profile-header img {
       width: 30px;
       height: 30px;
