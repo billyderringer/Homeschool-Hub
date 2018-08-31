@@ -7,6 +7,9 @@ const constants = {
     SET_TEACHER_ID: 'SET_TEACHER_ID',
     SET_TEACHER_DATA: 'SET_TEACHER_DATA',
 
+    //terms
+    SET_TERMS: 'SET_TERMS',
+
     //modals
     OPEN_REGISTER: 'OPEN_REGISTER',
     CLOSE_REGISTER: 'CLOSE_REGISTER',

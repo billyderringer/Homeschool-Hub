@@ -5,6 +5,8 @@ import texture from '../../../../Assets/black-linen.png'
 import Term from './Term'
 
 class SideMenu extends Component{
+
+
     render(){
         const {teacher} = this.props
         const profile = teacher.avatar !== undefined ?

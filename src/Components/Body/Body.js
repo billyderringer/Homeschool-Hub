@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Splash from './Splash'
-import Dashboard from "./Dashboard/Dashboard";
+import Dashboard from "./Dashboard/Dashboard"
 
 class Body extends Component{
+
     render(){
         return(
             <React.Fragment>

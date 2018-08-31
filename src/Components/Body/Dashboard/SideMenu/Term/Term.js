@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import './Term.css'
 import Modal from 'react-modal'
 import GenericApi from '../../../../../Data/API/generic'
-import Selector from "../../../../Selector"
 
 const genericApi = new GenericApi()
 
@@ -20,6 +19,14 @@ class Term extends Component{
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleModal = this.handleModal.bind(this)
         this.addTerm = this.addTerm.bind(this)
+        this.getTerms= this.getTerms.bind(this)
+        this.setTerms= this.setTerms.bind(this)
+    }
+
+    componentDidMount(){
+        if(this.props.teacher.currentTeacher !== []){
+            this.getTerms()
+        }
     }
 
     handleChange(event) {
@@ -50,23 +57,29 @@ class Term extends Component{
             "termEnd": this.state.termEnd
         }
 
-        genericApi.addElement(body, "term", localStorage.getItem('teacherId'))
+        genericApi.addElement(body, "term", localStorage.getItem('teacherId'), this.getTerms)
         this.setState({isModalOpen: !this.state.isModalOpen})
     }
 
+    getTerms(){
+        genericApi.getElements('term', 'teacher', this.setTerms)
+    }
+
+    setTerms(terms){
+        this.props.setTerms(terms)
+    }
 
     render(){
         return(
             <section id="container-term"
                  className="container-menu">
 
-                <section id="term-header">
+                <section id="term-header"
+                         className="flex">
                     <h4 className="menu-title">Terms</h4>
                     <i className="fas fa-plus-square menu-icon"
                        onClick={this.handleModal} />
                 </section>
-
-                <Selector name="Terms" options={this.props.teacher.terms}/>
 
                 <Modal isOpen={this.state.isModalOpen}
                        onRequestClose={this.closeModal}
@@ -121,4 +134,13 @@ const mapStateToProps = (state) =>{
     }
 }
 
-export default connect(mapStateToProps)(Term)
+const mapDispatchToProps = (dispatch) =>{
+    return {
+        setTerms: (terms) => {
+            const action = {type: 'SET_TERMS', terms}
+            dispatch(action)
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Term)

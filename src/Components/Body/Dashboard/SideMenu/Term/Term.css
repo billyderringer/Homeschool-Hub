@@ -56,6 +56,7 @@ a:active, a:focus {
     border-bottom: 1px solid #3b3b3b;
     padding-bottom: 5px;
     margin-bottom: 20px;
+    margin-left: -10%;
     width: 120%; }
     .container-modal .modal-header .modal-title {
       font-size: .9em;
@@ -83,6 +84,9 @@ a:active, a:focus {
   display: flex;
   justify-content: center;
   align-items: center; }
+
+.flex {
+  display: flex; }
 
 .flex-row {
   flex-direction: row; }
@@ -130,16 +134,14 @@ a:active, a:focus {
   text-align: center; }
 
 #container-term {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 0 5px; }
-  #container-term .menu-title {
-    font-size: .8em;
-    color: #2bbbad; }
-  #container-term .menu-icon {
-    color: #2bbbad; }
-  #container-term .term-selector {
-    display: block; }
+  #container-term #term-header {
+    align-items: center;
+    justify-content: space-between; }
+    #container-term #term-header .menu-title {
+      font-size: .8em;
+      color: #2bbbad; }
+    #container-term #term-header .menu-icon {
+      color: #2bbbad; }
 
 /*# sourceMappingURL=Term.css.map */

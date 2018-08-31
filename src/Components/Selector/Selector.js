@@ -6,7 +6,8 @@ class Selector extends Component{
             <select name={this.props.name} >
                 {
                     this.props.options.map((option, i) => {
-                        return <option value={option.termTitle}>
+                        return <option key={i}
+                                       value={option.termTitle}>
                             {option.name}
                         </option>
                     })

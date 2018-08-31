@@ -3,10 +3,6 @@ const initialState = {
     isLoggedIn: false,
     openLogin: false,
     openRegister: false,
-    hasTerm: false,
-    hasStudent: false,
-    hasSubject: false,
-    hasAssignment: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -52,6 +48,17 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 openLogin: false
+            }
+
+            //term stuff
+        case 'SET_TERMS':
+            return {
+                ...state,
+                currentTeacher: {
+                    ...state.currentTeacher,
+                    terms: action.terms.data
+                }
+
             }
         default:
             return state

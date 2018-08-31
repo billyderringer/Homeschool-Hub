@@ -91,6 +91,7 @@ a:active, a:focus {
     border-bottom: 1px solid $off-black;
     padding-bottom: 5px;
     margin-bottom: 20px;
+    margin-left: -10%;
     width: 120%;
     .modal-title{
       font-size: .9em;
@@ -127,6 +128,10 @@ a:active, a:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.flex{
+  display: flex;
 }
 
 .flex-row{

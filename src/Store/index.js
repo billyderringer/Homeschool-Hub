@@ -1,9 +1,9 @@
 import { createStore, combineReducers } from 'redux'
 import styleReducer from './Reducers/styleReducer'
 import teacherReducer from './Reducers/teacherReducer'
-//import {loadState, saveState} from './localStorage'
+import {loadState, saveState} from './localStorage'
 
-//const persistedState = loadState()
+const persistedState = loadState()
 const reducer = combineReducers({
     styleReducer,
     teacherReducer
@@ -11,13 +11,13 @@ const reducer = combineReducers({
 
 const store = createStore(
     reducer,
-    //  persistedState,
+    persistedState,
     window.__REDUX_DEVTOOLS_EXTENSION__ &&
     window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
-//store.subscribe(() => {
-//    saveState(store.getState())
-//})
+store.subscribe(() => {
+    saveState(store.getState())
+})
 
 export default store
